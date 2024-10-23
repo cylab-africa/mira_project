@@ -1,15 +1,27 @@
-FROM ubuntu:latest
+FROM alpine:latest
 
-# Update the package list and install curl
-RUN apt-get update && apt-get install -y curl
+# Set environment variable 
+ENV COUNTRY="Rwanda" 
+ENV ookla_speedtest=false
+ENV iperf3_speedtest=false
+ENV iperf3_server="169.150.238.161"
 
-# Add the Ookla repository and install Speedtest CLI
-RUN curl -s https://packagecloud.io/install/repositories/ookla/speedtest-cli/script.deb.sh -o install_speedtest.sh && \
-    bash install_speedtest.sh && \
-    apt-get install -y speedtest
+# Installing iperf3
+RUN apk add --no-cache iperf3 busybox-suid 
 
-# Cleanup to reduce image size
-RUN apt-get clean && rm -rf /var/lib/apt/lists/*
+# Install necessary packages (tar for extraction)
+RUN apk add --no-cache tar
+
+
+
+# Copy the Ookla Speedtest binary tar file from your local folder into the container
+COPY ookla-speedtest-1.2.0-linux-aarch64.tgz /tmp/speedtest.tgz
+
+# Extract the tar file and move the binary to /usr/local/bin
+RUN tar -xzf /tmp/speedtest.tgz -C /tmp && \
+    mv /tmp/speedtest /usr/local/bin/speedtest && \
+    chmod +x /usr/local/bin/speedtest && \
+    rm -rf /tmp/*
 
 # Create directories for reports and scripts
 RUN mkdir -p /reports && mkdir -p /scripts
@@ -19,7 +31,7 @@ COPY speedtest_test.sh /scripts/speedtest_test.sh
 RUN chmod +x /scripts/speedtest_test.sh
 
 # Set up cron job to run the script every 7 minutes
-# RUN echo "*/7 * * * * /scripts/speedtest_test.sh >> /var/log/speedtest_test.log 2>&1" > /etc/crontabs/root
+RUN echo "25 * * * * /scripts/speedtest_test.sh >> /var/log/speedtest_test.log 2>&1" > /etc/crontabs/root
 
 # Start cron and keep the container running
-CMD ["sh", "-c", "cron -f"]
+CMD ["sh", "-c", "crond -f"]

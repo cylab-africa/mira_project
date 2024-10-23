@@ -1,4 +1,4 @@
-Upanzi Pod measurements. Version 4.2
+Upanzi Pod measurements. Version 4.3
 
 Services
 -speedtest_test.
@@ -19,7 +19,14 @@ to allow the pod maxmun efficiency
 
 
 Fixes
-    Replacement of iperf3 service to ookla speedtest
+    Speedtest service now contain both iperf3 and ookla speed test 
        Although iperf3 offers a lot of flexibility when it comes to measurements
        Most of the time its public server are not available hence hindering the measuremtns 
-       Unless we setup the public available server, we will be moving to ooklaspeed test.
+       Unless we setup the public available server, ookla speetest as as a backup.
+    
+    iperf3 and ookla speedtest environmental variables
+    Envirionmental variables have been introduced.
+        ENV ookla_speedtest=false to enable ookla speed test
+        ENV iperf3_speedtest=false to enable iperf3 speed test
+        ENV iperf3_server="169.150.238.161" to set the iperf server
+        All the variables can be modifed at the balena cloud
