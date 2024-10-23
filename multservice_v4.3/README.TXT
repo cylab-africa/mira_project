@@ -29,4 +29,4 @@ Fixes
         ENV ookla_speedtest=false to enable ookla speed test
         ENV iperf3_speedtest=false to enable iperf3 speed test
         ENV iperf3_server="169.150.238.161" to set the iperf server
-        All the variables can be modifed at the balena cloud
+        All the variables can be modifed at the balena cloud.
