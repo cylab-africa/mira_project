@@ -5,6 +5,7 @@ ENV COUNTRY="Rwanda"
 ENV ookla_speedtest=false
 ENV iperf3_speedtest=false
 ENV iperf3_server="169.150.238.161"
+ENV ookla_server="none"
 
 # Installing iperf3
 RUN apk add --no-cache iperf3 busybox-suid 

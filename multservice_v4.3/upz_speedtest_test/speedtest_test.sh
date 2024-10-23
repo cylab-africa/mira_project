@@ -2,7 +2,15 @@
 
 if [ "$ookla_speedtest" = "true" ] && [ "$iperf3_speedtest" = "true" ]; then
    # Run ookla speed test 
-    speedtest --accept-license --accept-gdpr --format=json > "/reports/speedtest_result_$(date +"%Y-%m-%d_%I-%M%p").json"
+
+   if [ "$ookla_server" = "none" ]; then
+    # Run speedtest without the server argument
+        speedtest --accept-license --accept-gdpr --format=json > "/reports/speedtest_result_$(date +"%Y-%m-%d_%I-%M%p").json"
+    else
+        # Run speedtest with the server argument SERVER ID
+        speedtest -s $ookla_server --accept-license --accept-gdpr --format=json > "/reports/speedtest_result_$(date +"%Y-%m-%d_%I-%M%p").json"
+    fi
+        
     
 
     # Run iperf3 test 
