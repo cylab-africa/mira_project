@@ -1,3 +1,18 @@
+### How to
+
+To add features to this project, please clone to your machine, checkout a new branch to include the feature name you are working on and then push your feature to the feature remote branch.
+
+1. git clone https://github.com/cylab-africa/mira_project.git
+
+2. git checkout -b <featureName>
+
+3. Make your changes in your new feature branch
+
+4. Push your change to the remote feature branch and create a pull request. 
+
+5. An admin will review before merging to the main branch.
+
+
 Upanzi Pod measurements. Version 4.3
 
 Services
