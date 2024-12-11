@@ -4,7 +4,7 @@ To add features to this project, please clone to your machine, checkout a new br
 
 1. git clone https://github.com/cylab-africa/mira_project.git
 
-2. git checkout -b <featureName>
+2. git checkout -b "<featureName>"
 
 3. Make your changes in your new feature branch
 
