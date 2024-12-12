@@ -1,0 +1,2 @@
+# Running container
+docker run --rm --network=host  -v /home/parrot/Desktop/mobimeasurement/withScript/results:/results  withscript:latest

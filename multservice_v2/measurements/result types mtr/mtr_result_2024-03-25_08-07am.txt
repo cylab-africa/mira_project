@@ -1,0 +1,327 @@
+Running mtr for IP:197.243.22.13 site:irembo.gov.rw country: RW, Rwanda. date:2024-03-25_08-07am
+{
+    "report": {
+        "mtr": {
+            "src": "parrot",
+            "dst": "197.243.22.13",
+            "tos": 0,
+            "tests": 10,
+            "psize": "64",
+            "bitpattern": "0x00"
+        },
+        "hubs": [
+            {
+                "count": 1,
+                "host": "172-29-104-001.w.africa.local.cmu.edu",
+                "Loss%": 0.0,
+                "Snt": 10,
+                "Last": 11.65,
+                "Avg": 6.619,
+                "Best": 4.825,
+                "Wrst": 11.65,
+                "StDev": 1.924
+            },
+            {
+                "count": 2,
+                "host": "41.216.98.177",
+                "Loss%": 0.0,
+                "Snt": 10,
+                "Last": 23.219,
+                "Avg": 13.272,
+                "Best": 5.079,
+                "Wrst": 43.286,
+                "StDev": 11.693
+            },
+            {
+                "count": 3,
+                "host": "xe-0-4-0.std.rw.liquidtelecom.net",
+                "Loss%": 0.0,
+                "Snt": 10,
+                "Last": 11.503,
+                "Avg": 7.751,
+                "Best": 5.771,
+                "Wrst": 11.503,
+                "StDev": 1.83
+            },
+            {
+                "count": 4,
+                "host": "xe-0-0-2-0.pe1.rw.liquidtelecom.net",
+                "Loss%": 0.0,
+                "Snt": 10,
+                "Last": 8.488,
+                "Avg": 7.93,
+                "Best": 6.008,
+                "Wrst": 10.356,
+                "StDev": 1.213
+            },
+            {
+                "count": 5,
+                "host": "41.215.251.17",
+                "Loss%": 0.0,
+                "Snt": 10,
+                "Last": 6.106,
+                "Avg": 8.234,
+                "Best": 6.106,
+                "Wrst": 10.024,
+                "StDev": 1.207
+            },
+            {
+                "count": 6,
+                "host": "197.243.126.30",
+                "Loss%": 0.0,
+                "Snt": 10,
+                "Last": 8.01,
+                "Avg": 14.255,
+                "Best": 7.448,
+                "Wrst": 59.743,
+                "StDev": 16.045
+            },
+            {
+                "count": 7,
+                "host": "192.168.1.246",
+                "Loss%": 0.0,
+                "Snt": 10,
+                "Last": 5.673,
+                "Avg": 8.041,
+                "Best": 5.673,
+                "Wrst": 9.413,
+                "StDev": 1.419
+            },
+            {
+                "count": 8,
+                "host": "192.168.1.238",
+                "Loss%": 0.0,
+                "Snt": 10,
+                "Last": 6.589,
+                "Avg": 7.218,
+                "Best": 5.354,
+                "Wrst": 9.203,
+                "StDev": 1.222
+            },
+            {
+                "count": 9,
+                "host": "???",
+                "Loss%": 100.0,
+                "Snt": 10,
+                "Last": 0.0,
+                "Avg": 0.0,
+                "Best": 0.0,
+                "Wrst": 0.0,
+                "StDev": 0.0
+            }
+        ]
+    }
+}
+Running mtr for IP:197.241.17.172 site:ministere-finances.dj country: DJ, Djibouti. date:2024-03-25_08-07am
+{
+    "report": {
+        "mtr": {
+            "src": "parrot",
+            "dst": "197.241.17.172",
+            "tos": 0,
+            "tests": 10,
+            "psize": "64",
+            "bitpattern": "0x00"
+        },
+        "hubs": [
+            {
+                "count": 1,
+                "host": "172-29-104-001.w.africa.local.cmu.edu",
+                "Loss%": 0.0,
+                "Snt": 10,
+                "Last": 7.631,
+                "Avg": 6.821,
+                "Best": 4.5,
+                "Wrst": 9.424,
+                "StDev": 1.449
+            },
+            {
+                "count": 2,
+                "host": "41.216.98.177",
+                "Loss%": 0.0,
+                "Snt": 10,
+                "Last": 11.681,
+                "Avg": 10.359,
+                "Best": 6.206,
+                "Wrst": 21.834,
+                "StDev": 4.916
+            },
+            {
+                "count": 3,
+                "host": "xe-0-4-0.std.rw.liquidtelecom.net",
+                "Loss%": 0.0,
+                "Snt": 10,
+                "Last": 7.331,
+                "Avg": 8.199,
+                "Best": 5.235,
+                "Wrst": 19.352,
+                "StDev": 4.03
+            },
+            {
+                "count": 4,
+                "host": "xe-0-0-2-0.pe1.rw.liquidtelecom.net",
+                "Loss%": 0.0,
+                "Snt": 10,
+                "Last": 17.44,
+                "Avg": 14.633,
+                "Best": 4.995,
+                "Wrst": 63.4,
+                "StDev": 17.45
+            },
+            {
+                "count": 5,
+                "host": "et0-1-0-kcr-p01.rw.liquidtelecom.net",
+                "Loss%": 0.0,
+                "Snt": 10,
+                "Last": 94.482,
+                "Avg": 96.446,
+                "Best": 92.95,
+                "Wrst": 104.77,
+                "StDev": 3.282
+            },
+            {
+                "count": 6,
+                "host": "41.216.104.122",
+                "Loss%": 0.0,
+                "Snt": 10,
+                "Last": 100.34,
+                "Avg": 99.085,
+                "Best": 95.866,
+                "Wrst": 104.17,
+                "StDev": 2.603
+            },
+            {
+                "count": 7,
+                "host": "xe-1-1-0-2.lke-p1-nbi.liquidtelecom.net",
+                "Loss%": 0.0,
+                "Snt": 10,
+                "Last": 92.067,
+                "Avg": 92.978,
+                "Best": 90.89,
+                "Wrst": 94.874,
+                "StDev": 1.284
+            },
+            {
+                "count": 8,
+                "host": "197.155.90.253.liquidtelecom.net",
+                "Loss%": 0.0,
+                "Snt": 10,
+                "Last": 99.318,
+                "Avg": 99.446,
+                "Best": 97.608,
+                "Wrst": 102.06,
+                "StDev": 1.523
+            },
+            {
+                "count": 9,
+                "host": "41.175.223.182",
+                "Loss%": 0.0,
+                "Snt": 10,
+                "Last": 94.706,
+                "Avg": 94.728,
+                "Best": 90.162,
+                "Wrst": 97.467,
+                "StDev": 1.995
+            },
+            {
+                "count": 10,
+                "host": "41.175.223.180",
+                "Loss%": 10.0,
+                "Snt": 10,
+                "Last": 97.374,
+                "Avg": 97.237,
+                "Best": 94.932,
+                "Wrst": 100.54,
+                "StDev": 1.519
+            },
+            {
+                "count": 11,
+                "host": "???",
+                "Loss%": 100.0,
+                "Snt": 10,
+                "Last": 0.0,
+                "Avg": 0.0,
+                "Best": 0.0,
+                "Wrst": 0.0,
+                "StDev": 0.0
+            },
+            {
+                "count": 12,
+                "host": "be3268.rcr21.opo01.atlas.cogentco.com",
+                "Loss%": 0.0,
+                "Snt": 10,
+                "Last": 215.48,
+                "Avg": 214.27,
+                "Best": 212.39,
+                "Wrst": 215.89,
+                "StDev": 1.258
+            },
+            {
+                "count": 13,
+                "host": "be2313.ccr31.bio02.atlas.cogentco.com",
+                "Loss%": 0.0,
+                "Snt": 10,
+                "Last": 226.87,
+                "Avg": 231.75,
+                "Best": 224.13,
+                "Wrst": 273.44,
+                "StDev": 14.785
+            },
+            {
+                "count": 14,
+                "host": "be3077.ccr31.mrs02.atlas.cogentco.com",
+                "Loss%": 0.0,
+                "Snt": 10,
+                "Last": 241.2,
+                "Avg": 240.21,
+                "Best": 235.47,
+                "Wrst": 257.96,
+                "StDev": 6.462
+            },
+            {
+                "count": 15,
+                "host": "149.11.240.189",
+                "Loss%": 0.0,
+                "Snt": 10,
+                "Last": 262.74,
+                "Avg": 263.25,
+                "Best": 261.56,
+                "Wrst": 265.2,
+                "StDev": 1.349
+            },
+            {
+                "count": 16,
+                "host": "41.189.226.245",
+                "Loss%": 0.0,
+                "Snt": 10,
+                "Last": 303.02,
+                "Avg": 303.33,
+                "Best": 300.55,
+                "Wrst": 304.46,
+                "StDev": 1.154
+            },
+            {
+                "count": 17,
+                "host": "???",
+                "Loss%": 100.0,
+                "Snt": 10,
+                "Last": 0.0,
+                "Avg": 0.0,
+                "Best": 0.0,
+                "Wrst": 0.0,
+                "StDev": 0.0
+            },
+            {
+                "count": 18,
+                "host": "www.adi.dj",
+                "Loss%": 0.0,
+                "Snt": 10,
+                "Last": 300.79,
+                "Avg": 302.65,
+                "Best": 300.79,
+                "Wrst": 305.88,
+                "StDev": 1.914
+            }
+        ]
+    }
+}

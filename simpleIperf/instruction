@@ -1,0 +1,2 @@
+docker run --rm --network=host simpleiperf  iperf3 -c localhost -p 5201
+# TO build the image \n docker build -t simpleiperf .
