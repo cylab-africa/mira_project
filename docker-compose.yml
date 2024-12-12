@@ -19,10 +19,16 @@ services:
     restart: always
     volumes:
       - 'wm_data:/reports' #web_measurement_data
-  upz_speedtest_test:
-    build: ./upz_speedtest_test
+  upz_iperf3-server:
+    build: ./upz_iperf3-server
+    network_mode: "host"
+    ports:
+      - "5201:5201" # Default iPerf3 server port
+    restart: always
+  upz_iperf3-client:
+    build: ./upz_iperf3-client
     volumes:
-      - 'spd_data:/reports' # Iperf Data 
+      - 'iprf_data:/reports' # Iperf Data 
     restart: always
   upz_network_usage_monitor:
     build: ./upz_network_usage_monitor
@@ -37,5 +43,5 @@ volumes:
   pr_data:
   mr_data:
   wm_data:
-  spd_data:
+  iprf_data:
   nu_data:

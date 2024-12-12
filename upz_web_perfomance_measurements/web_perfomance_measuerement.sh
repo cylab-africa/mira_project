@@ -34,7 +34,6 @@ websites=(
   "https://www.amazon.com/"
   "https://www.wikipedia.org/"
   "https://www.youtube.com/"
-  
 )
 
 # Loop through the websites array
