@@ -14,7 +14,7 @@ RUN chmod +x /scripts/iperf3_test.sh
 
 
 # Set up cron job to run the script every 7 minutes
-RUN echo "25 * * * * /scripts/iperf3_test.sh >> /var/log/iperf3_test.log 2>&1" > /etc/crontabs/root
+RUN echo "20 * * * * /scripts/iperf3_test.sh >> /var/log/iperf3_test.log 2>&1" > /etc/crontabs/root
 
 # Start cron and keep the container running
 CMD ["sh", "-c", "crond -f"]
