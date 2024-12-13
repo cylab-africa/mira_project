@@ -95,10 +95,10 @@ services:
 
 Each service has a detailed README file for further instructions. Click on the links below for more information:
 
-- [Speedtest Service](./upz_speed_test/README.md)
+- [Speedtest Service](./upz_speedtest_test/README.md)
 - [Mesh Routes Service](./upz_mesh_routes/README.md)
-- [Africa Routes Service](./upz_packets_routes_africa/README.md)
-- [Web Performance Service](./upz_web_performance_measurement/README.md)
+- [Africa Routes Service](./upz_packets_routes_Africa/README.md)
+- [Web Performance Service](./upz_web_perfomance_measurements/README.md)
 - [Network Usage Monitoring Service](./upz_network_usage_monitor/README.md)
 
 ---
