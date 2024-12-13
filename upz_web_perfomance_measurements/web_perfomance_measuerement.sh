@@ -2,10 +2,10 @@
 
 export PATH=/usr/local/bin:/usr/bin:$PATH
 
-current_datetime=$(date +"%Y-%m-%d_%I-%M%p") # Custom format: Year-Month-Day_Hour-MinutesAM/PM
+# Extract the current hour and AM/PM
+current_datetime=$(date +"%I%p") # Hour in 12-hour format with AM/PM
 
 # Specify the output files
-# LighthouseOutput="/reports/temp_lighthouse_report_$current_datetime.json"
 report_csv="/reports/lighthouse_report.csv"
 
 
