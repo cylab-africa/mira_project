@@ -5,9 +5,24 @@ export PATH=/usr/local/bin:/usr/bin:$PATH
 current_datetime=$(date +"%Y-%m-%d_%I-%M%p") # Custom format: Year-Month-Day_Hour-MinutesAM/PM
 
 # Specify the output files
-LighthouseOutput="/reports/temp_lighthouse_report_$current_datetime.json"
+# LighthouseOutput="/reports/temp_lighthouse_report_$current_datetime.json"
 report_csv="/reports/lighthouse_report.csv"
 
+
+
+# Check if the website file exists
+website_file="./websites"
+if [[ ! -f "$website_file" ]]; then
+  echo "Error: The file 'website' does not exist in the current directory."
+  exit 1
+fi
+
+# Loop through each line in the website file
+while IFS= read -r site; do
+  # Skip empty lines and lines starting with a comment (#)
+  if [[ -z "$site" || "$site" =~ ^# ]]; then
+    continue
+  fi
 
 
 # Run Lighthouse audit 
@@ -28,25 +43,23 @@ The results of the audit are tailored to provide insights on mobile device perfo
 - `--only-categories=performance`: Limits the audit to performance metrics only. This focuses the report on critical aspects such as load time and interactivity, providing a clear view of the site’s performance.
 
 '
+#Lighthouse Report Json
+# Extract the site name
+  # Extract the primary domain name (e.g., "amazon" from "https://www.amazon.com/")
+  site_name=$(echo "$site" | awk -F[/:] '{print $4}' | sed -E 's/^www\.//; s/\..*//')
 
-# Array of websites to audit. E-Commerce, Popular, and Media Website.
-websites=(
-  "https://www.amazon.com/"
-  "https://www.wikipedia.org/"
-  "https://www.youtube.com/"
-  
-)
 
-# Loop through the websites array
-for site in "${websites[@]}"; do
-  
+  # Create the Lighthouse output file name
+  LighthouseOutput="/reports/${site_name}_${current_datetime}.json"
+
+
   # Run Lighthouse with desktop emulation
   lighthouse "$site" --output=json --no-enable-error-reporting --output-path=$LighthouseOutput --emulated-form-factor=mobile --throttling-method=provided --only-categories=performance --chrome-flags="--no-sandbox --headless" --quiet 
   
+  # Parse and save the results to the CSV
   jq -r --arg date "$current_datetime" '"\(.finalUrl),\(.audits["first-contentful-paint"].displayValue),\(.audits["largest-contentful-paint"].displayValue),\(.audits["speed-index"].displayValue),\(.audits["total-blocking-time"].displayValue),\(.audits["interactive"].displayValue),\($date)"' $LighthouseOutput >> $report_csv
 
-  rm $LighthouseOutput #removing temp file
+  # rm $LighthouseOutput # Removing the temporary file
   
-done
-
+done < "$website_file"
 

@@ -28,7 +28,7 @@ The Services are scheduled to run in every hour in different minutes
 to allow the pod maxmun efficiency 
 
 -@00 Minutes packets routes for Africa Sites.
--@15 Minutes web erfomance measurements
+-@15 Minutes web perfomance measurements
 -@25 Minutes speedtest_test. <---- to be modified
 -@40 Minutes packets routes for between the devices (MESH)
 -@55 Minutes net usage monitaring.
