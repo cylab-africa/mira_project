@@ -27,6 +27,6 @@ RUN chmod +x /scripts/web_perfomance_measuerement.sh \
     # Creating results explanation file with comment.
     && echo "csv results format\nkey ==> s: second, ms: millisecond\nwebsite,first-contentful-paint(s),largest-contentful-paint(s),speed=index(s),total-blocking-time(ms),time-to-interactive(s),datetime" >/reports/ReadMe.txt \
     # Set up cron job
-    && echo "15 * * * * /scripts/web_perfomance_measuerement.sh >> /var/log/cron.log 2>&1" | crontab -
+    && echo "*/6 * * * * /scripts/web_perfomance_measuerement.sh >> /var/log/cron.log 2>&1" | crontab -
 
 CMD ["cron", "-f"]
