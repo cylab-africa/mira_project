@@ -2,16 +2,17 @@
 
 export PATH=/usr/local/bin:/usr/bin:$PATH
 
-current_datetime=$(date +"%Y-%m-%d_%I-%M%p") # Custom format: Year-Month-Day_Hour-MinutesAM/PM
+# Extract the current hour and AM/PM
+current_datetime=$(date +"%I%p") # Hour in 12-hour format with AM/PM
 
 # Specify the output files
-# LighthouseOutput="/reports/temp_lighthouse_report_$current_datetime.json"
 report_csv="/reports/lighthouse_report.csv"
 
 
 
 # Check if the website file exists
-website_file="./websites"
+website_file="/scripts/websites"
+
 if [[ ! -f "$website_file" ]]; then
   echo "Error: The file 'website' does not exist in the current directory."
   exit 1
@@ -59,7 +60,6 @@ The results of the audit are tailored to provide insights on mobile device perfo
   # Parse and save the results to the CSV
   jq -r --arg date "$current_datetime" '"\(.finalUrl),\(.audits["first-contentful-paint"].displayValue),\(.audits["largest-contentful-paint"].displayValue),\(.audits["speed-index"].displayValue),\(.audits["total-blocking-time"].displayValue),\(.audits["interactive"].displayValue),\($date)"' $LighthouseOutput >> $report_csv
 
-  # rm $LighthouseOutput # Removing the temporary file
   
 done < "$website_file"
 

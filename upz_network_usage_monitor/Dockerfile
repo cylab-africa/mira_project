@@ -16,7 +16,7 @@ RUN chmod +x /scripts/monitor_network_usage.sh
 
 
 # Set up cron job to run the script every 7 minutes
-RUN echo "*/7 * * * * /scripts/monitor_network_usage.sh >> /var/log/iperf3_test.log 2>&1" > /etc/crontabs/root
+RUN echo "50 * * * * /scripts/monitor_network_usage.sh >> /var/log/iperf3_test.log 2>&1" > /etc/crontabs/root
 
 # Start cron and keep the container running
 CMD ["sh", "-c", "crond -f"]
