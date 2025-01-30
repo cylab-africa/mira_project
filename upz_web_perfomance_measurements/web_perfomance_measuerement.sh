@@ -49,7 +49,6 @@ The results of the audit are tailored to provide insights on mobile device perfo
   # Extract the primary domain name (e.g., "amazon" from "https://www.amazon.com/")
   site_name=$(echo "$site" | awk -F[/:] '{print $4}' | sed -E 's/^www\.//; s/\..*//')
 
-
   # Create the Lighthouse output file name
   LighthouseOutput="/reports/${site_name}_${current_datetime}.json"
 
