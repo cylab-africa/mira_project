@@ -15,7 +15,7 @@ COPY IPs_data /scripts/IPs_data
 
 # Make the script executable and set up the cron job
 RUN chmod +x /scripts/mtr_measurements.sh && \
-    echo "40 * * * * root  /scripts/mtr_measurements.sh" > /etc/cron.d/run_tests_cron && \
+    echo "*40 * * * * root  /scripts/mtr_measurements.sh" > /etc/cron.d/run_tests_cron && \
     chmod 0644 /etc/cron.d/run_tests_cron && \
     crontab /etc/cron.d/run_tests_cron && \
     touch /var/log/cron.log
