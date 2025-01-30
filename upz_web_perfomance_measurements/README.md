@@ -15,3 +15,11 @@ To modify the list of target websites:
 https://www.amazon.com
 https://www.youtube.com
 https://www.wikipedia.org
+
+## Network Usage Monitoring
+This container also includes a script to measure data usage and record the statistics in a file called `network_usage.log` inside the `/reports` folder.
+
+The script `monitor_network_usage.sh` runs periodically as a cron job and logs the network usage of the specified interface.
+
+### Log File
+The network usage statistics are recorded in the `/reports/network_usage.log` file.
