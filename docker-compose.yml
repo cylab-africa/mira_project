@@ -24,18 +24,10 @@ services:
     volumes:
       - 'spd_data:/reports' # Iperf Data 
     restart: always
-  upz_network_usage_monitor:
-    build: ./upz_network_usage_monitor
-    environment:
-      - MONITOR_CONTAINERS=upz_packets_routes_Africa,upz_mesh_routes,upz_web_perfomance_measurements,upz_iperf3-server,upz_iperf3-client
-    restart: always
-    cap_add:
-      - NET_ADMIN
-    privileged: true
+  
 
 volumes:
   pr_data:
   mr_data:
   wm_data:
   spd_data:
-  nu_data:

@@ -13,7 +13,7 @@ The following services are included in the Upanzi Pod:
 - **packets routes for Africa Sites**: Performs traceroutes to 45 African websites.
 - **packets routes for between the devices (MESH)**: Traces routes between devices in the pod.
 - **web performance measurements**: Analyzes the performance of specified websites.
-- **net usage monitoring**: Tracks the network usage of all containers on the device.
+- **net usage monitoring**: Tracks the network usage of all containers on the device. (Now included within each service)
 
 ---
 
@@ -25,7 +25,6 @@ To maximize efficiency, services are scheduled to run at specific times each hou
 - **@15 Minutes**: Web performance measurements.
 - **@25 Minutes**: Speedtest_test. (This timing can be modified as needed.)
 - **@40 Minutes**: Packets routes between devices (MESH).
-- **@55 Minutes**: Net usage monitoring.
 
 ---
 
@@ -74,9 +73,6 @@ services:
 
   web_performance:
     build: ./upz_web_performance_measurement
-
-  network_usage:
-    build: ./upz_network_usage_monitor
 ```
 
 ### Deploying on Balena
@@ -99,7 +95,6 @@ Each service has a detailed README file for further instructions. Click on the l
 - [Mesh Routes Service](./upz_mesh_routes/README.md)
 - [Africa Routes Service](./upz_packets_routes_Africa/README.md)
 - [Web Performance Service](./upz_web_perfomance_measurements/README.md)
-- [Network Usage Monitoring Service](./upz_network_usage_monitor/README.md)
 
 ---
 
