@@ -23,5 +23,5 @@ vnstat -u -i $INTERFACE
 
 # Record the current network usage
 echo "$(date): Network usage for interface $INTERFACE" >> $LOG_FILE
-vnstat -i $INTERFACE --oneline >> $LOG_FILE
+vnstat -i $INTERFACE -d >> $LOG_FILE
 echo "---------------------------------" >> $LOG_FILE
