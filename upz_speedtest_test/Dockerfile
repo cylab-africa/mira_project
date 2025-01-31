@@ -2,8 +2,8 @@ FROM alpine:latest
 
 # Set environment variable 
 ENV COUNTRY="Rwanda" 
-ENV ookla_speedtest=false
-ENV iperf3_speedtest=false
+ENV ookla_speedtest=true
+ENV iperf3_speedtest=true
 ENV iperf3_server="169.150.238.161"
 ENV ookla_server="none"
 
