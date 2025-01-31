@@ -14,7 +14,7 @@ fi
 
 # Initialize vnStat database for the interface if not already initialized
 if ! vnstat --iflist | grep -q "$INTERFACE"; then
-    vnstat  -i $INTERFACE
+    vnstat -i $INTERFACE
     vnstat -i $INTERFACE --create
 fi
 

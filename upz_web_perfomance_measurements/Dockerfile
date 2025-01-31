@@ -31,7 +31,7 @@ RUN chmod +x /scripts/web_perfomance_measuerement.sh /scripts/monitor_network_us
     && echo "csv results format\nkey ==> s: second, ms: millisecond\nwebsite,first-contentful-paint(s),largest-contentful-paint(s),speed=index(s),total-blocking-time(ms),time-to-interactive(s),datetime" >/reports/ReadMe.txt \
     # Set up cron jobs
     && (crontab -l ; echo "15 * * * * /scripts/web_perfomance_measuerement.sh >> /var/log/cron.log 2>&1") | crontab - \
-    && (crontab -l ; echo "20 * * * * /scripts/monitor_network_usage.sh >> /var/log/cron.log 2>&1") | crontab -
+    && (crontab -l ; echo "55 23 * * * /scripts/monitor_network_usage.sh >> /var/log/cron.log 2>&1") | crontab -
 
 # Create the cron log file and start vnstatd
 RUN touch /var/log/cron.log \

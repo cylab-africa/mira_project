@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 # Interface to monitor
 INTERFACE="eth0"
@@ -19,7 +19,7 @@ if ! vnstat --iflist | grep -q "$INTERFACE"; then
 fi
 
 # Update vnStat database
-vnstat  -i $INTERFACE
+vnstat -i $INTERFACE
 
 # Record the current network usage
 echo "$(date): Network usage for interface $INTERFACE" >> $LOG_FILE

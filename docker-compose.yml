@@ -1,7 +1,6 @@
-version: '2'
 services:
-  upz_packets_routes_Africa:
-    build: ./upz_packets_routes_Africa
+  upz_packets_routes_africa:
+    build: ./upz_packets_routes_africa
     #network_mode: "host"
     # No ports need to be exposed for the client
     restart: always
@@ -22,9 +21,9 @@ services:
   upz_speedtest_test:
     build: ./upz_speedtest_test
     volumes:
-      - 'spd_data:/reports' # Iperf Data 
+      - 'spd_data:/reports' # Iperf Data
     restart: always
-  
+
 
 volumes:
   pr_data:
