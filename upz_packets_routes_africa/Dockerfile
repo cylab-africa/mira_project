@@ -1,19 +1,16 @@
-# Use Debian slim as the base image
-FROM debian:bullseye-slim
+# Use Ubuntu as the base image
+FROM ubuntu:20.04
 
-# Install iPerf3, mtr, cron, and geoiplookup >>>removed iPerf3
-RUN apt update && \ 
-    apt install -y mtr cron geoip-bin && \
+# Set environment variable to avoid interactive prompts
+ENV DEBIAN_FRONTEND=noninteractive
+
+# Install mtr, cron, geoiplookup, and vnstat
+RUN apt update && \
+    apt install -y mtr cron geoip-bin vnstat && \
     apt clean && \
     rm -rf /var/lib/apt/lists/* && \
     mkdir -p /reports && \
     mkdir /scripts
-
-# Install vnstat
-RUN apt update && \
-    apt install -y vnstat && \
-    apt clean && \
-    rm -rf /var/lib/apt/lists/*
 
 # Start vnstatd service
 RUN service vnstat start

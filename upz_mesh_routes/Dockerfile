@@ -1,8 +1,11 @@
-# Use Debian slim as the base image
-FROM debian:bullseye-slim
+# Use Ubuntu as the base image
+FROM ubuntu:20.04
+
+# Set environment variable to avoid interactive prompts
+ENV DEBIAN_FRONTEND=noninteractive
 
 # Install mtr, cron, geoiplookup, and vnstat
-RUN apt update && \ 
+RUN apt update && \
     apt install -y mtr cron geoip-bin vnstat && \
     apt clean && \
     rm -rf /var/lib/apt/lists/* && \

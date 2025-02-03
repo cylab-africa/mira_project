@@ -1,3 +1,4 @@
+version: '2.1' 
 services:
   upz_packets_routes_africa:
     build: ./upz_packets_routes_africa

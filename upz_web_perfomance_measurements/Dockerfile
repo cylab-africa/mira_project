@@ -1,6 +1,9 @@
 # Use an official Node runtime as a parent image
 FROM node:18-slim
 
+# Set environment variable to avoid interactive prompts
+ENV DEBIAN_FRONTEND=noninteractive
+
 # Install Chromium and other necessary packages
 RUN apt-get update && apt-get install -y \
     chromium \
@@ -37,5 +40,5 @@ RUN chmod +x /scripts/web_perfomance_measuerement.sh /scripts/monitor_network_us
 RUN touch /var/log/cron.log \
     && service vnstat start
 
-# Command to start cron service, vnstatd, and keep the container running
-CMD ["sh", "-c", "service vnstat start && cron -f && tail -f /var/log/cron.log"]
+# Command to start cron service and vnstatd
+CMD ["sh", "-c", "service vnstat start && cron -f"]
