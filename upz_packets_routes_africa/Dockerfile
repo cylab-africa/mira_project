@@ -4,34 +4,39 @@ FROM ubuntu:20.04
 # Set environment variable to avoid interactive prompts
 ENV DEBIAN_FRONTEND=noninteractive
 
-# Install mtr, cron, geoiplookup, and vnstat
-RUN apt update && \
-    apt install -y mtr cron geoip-bin vnstat && \
-    apt clean && \
-    rm -rf /var/lib/apt/lists/* && \
-    mkdir -p /reports && \
-    mkdir /scripts
+# Install necessary packages
+RUN apt update && apt install -y \
+    mtr \
+    cron \
+    geoip-bin \
+    vnstat \
+    --no-install-recommends \
+    && apt clean \
+    && rm -rf /var/lib/apt/lists/* 
+
+# Set up required directories
+RUN mkdir -p /reports /scripts
+
 
 # Start vnstatd service
 RUN service vnstat start
 
-# Copy the test script and IP address data into the container
+# Copy test scripts and data
 COPY mtr_measurements.sh /scripts/mtr_measurements.sh
 COPY IPs_data /scripts/IPs_data
-
-# Copy the monitor network usage script into the container
 COPY monitor_network_usage.sh /scripts/monitor_network_usage.sh
-RUN chmod +x /scripts/monitor_network_usage.sh
 
-# Make the script executable and set up the cron job
-RUN chmod +x /scripts/mtr_measurements.sh && \
-    echo "0 * * * * root  /scripts/mtr_measurements.sh" > /etc/cron.d/run_tests_cron && \
-    chmod 0644 /etc/cron.d/run_tests_cron && \
-    crontab /etc/cron.d/run_tests_cron && \
-    touch /var/log/cron.log
+# Set executable permissions
+RUN chmod +x /scripts/mtr_measurements.sh /scripts/monitor_network_usage.sh
 
-# Set up cron job to run the network usage script daily at 23:55
-RUN echo "55 23 * * * root /scripts/monitor_network_usage.sh >> /var/log/cron.log 2>&1" >> /etc/cron.d/run_tests_cron
 
-# Run the cron job in the foreground
-CMD ["cron", "-f"]
+# Set up cron jobs dynamically
+RUN (crontab -l 2>/dev/null; echo "0 * * * * /scripts/mtr_measurements.sh >> /var/log/cron.log 2>&1") | crontab - \
+    && (crontab -l 2>/dev/null; echo "55 23 * * * /scripts/monitor_network_usage.sh >> /var/log/cron.log 2>&1") | crontab -
+
+# Create log file and start vnstatd
+RUN touch /var/log/cron.log \
+    && service vnstat start
+
+# Command to start vnstat and cron in foreground
+CMD ["sh", "-c", "service vnstat start && cron -f"]

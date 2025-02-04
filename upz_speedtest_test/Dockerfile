@@ -46,7 +46,7 @@ RUN chmod +x /scripts/monitor_network_usage.sh
 RUN echo "25 * * * * /scripts/speedtest_test.sh >> /var/log/speedtest_test.log 2>&1" > /etc/crontabs/root
 
 # Set up cron job to run the network usage script daily at 23:55
-RUN echo "55 23 * * * /scripts/monitor_network_usage.sh >> /var/log/cron.log 2>&1" >> /etc/crontabs/root
+RUN echo "*/5 * * * * /scripts/monitor_network_usage.sh >> /var/log/cron.log 2>&1" >> /etc/crontabs/root
 
-# Start cron and keep the container running
-CMD ["sh", "-c", "crond -f"]
+# Command to start vnstat and cron in foreground
+CMD ["sh", "-c", "service vnstat start && cron -f"]
