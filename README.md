@@ -9,11 +9,11 @@ The Upanzi Pod Measurements project is designed to perform a variety of network 
 ### Services
 The following services are included in the Upanzi Pod:
 
-- **speedtest_test**: Measures network speed using Ookla Speedtest and iPerf3.
-- **packets routes for Africa Sites**: Performs traceroutes to 45 African websites.
-- **packets routes for between the devices (MESH)**: Traces routes between devices in the pod.
-- **web performance measurements**: Analyzes the performance of specified websites.
-- **net usage monitoring**: Tracks the network usage of all containers on the device. (Now included within each service)
+- **Speedtest Service**: Measures network speed using Ookla Speedtest and iPerf3.
+- **Africa Routes Service**: Performs traceroutes to 45 African websites.
+- **Mesh Routes Service**: Traces routes between devices in the pod.
+- **Web Performance Service**: Analyzes the performance of specified websites.
+- **Network Usage Monitoring**: Tracks the network usage of all containers on the device. (Now included within each service)
 
 ---
 
@@ -21,10 +21,10 @@ The following services are included in the Upanzi Pod:
 
 To maximize efficiency, services are scheduled to run at specific times each hour:
 
-- **@00 Minutes**: Packets routes for Africa Sites.
-- **@15 Minutes**: Web performance measurements.
-- **@25 Minutes**: Speedtest_test. (This timing can be modified as needed.)
-- **@40 Minutes**: Packets routes between devices (MESH).
+- **@00 Minutes**: Africa Routes Service.
+- **@15 Minutes**: Web Performance Service.
+- **@25 Minutes**: Speedtest Service. (This timing can be modified as needed.)
+- **@40 Minutes**: Mesh Routes Service.
 
 ---
 
@@ -43,7 +43,10 @@ You can customize the configuration for speed tests through the following enviro
 
 ### Getting Started
 
-1. Clone this repository to your local machine.
+1. Clone this repository to your local machine:
+   ```bash
+   git clone <repository_url>
+   ```
 2. Navigate to the repository folder:
    ```bash
    cd upanzi-pod-measurements

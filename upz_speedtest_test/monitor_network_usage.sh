@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # Interface to monitor
 INTERFACE="eth0"
@@ -10,6 +10,12 @@ LOG_FILE="/reports/network_usage.log"
 if ! command -v vnstat &> /dev/null; then
     echo "vnStat is not installed. Please ensure it is installed in the container."
     exit 1
+fi
+
+# Ensure vnStat service is running
+if ! pgrep -x "vnstatd" > /dev/null; then
+    echo "vnStat service is not running. Starting vnStat service..."
+    service vnstat start
 fi
 
 # Initialize vnStat database for the interface if not already initialized
