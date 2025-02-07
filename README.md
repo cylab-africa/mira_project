@@ -109,4 +109,7 @@ Feel free to fork this repository, report issues, or submit pull requests. For s
 
 ## License
 
-This project is licensed under the MIT License. See the `LICENSE` file for more details.
+
+This project is licensed under the Mozilla Public License 2.0 (MPL-2.0). See the [`LICENSE`]([url](https://www.mozilla.org/en-US/MPL/2.0/)) file for more details.
+
+
