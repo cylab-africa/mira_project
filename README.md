@@ -19,11 +19,11 @@ The following services are included in the Upanzi Pod:
 
 ## Service Runtime Schedule
 
-To maximize efficiency, services are scheduled to run at specific times each hour:
+To maximize efficiency, services are scheduled to run at specific times each hour(This timing can be modified as needed.):
 
 - **@00 Minutes**: Africa Routes Service.
 - **@15 Minutes**: Web Performance Service.
-- **@25 Minutes**: Speedtest Service. (This timing can be modified as needed.)
+- **@25 Minutes**: Speedtest Service. 
 - **@40 Minutes**: Mesh Routes Service.
 
 ---
