@@ -19,15 +19,17 @@ This container performs performance tests using `ookla speedtest` and `iperf3`.
         Follow the instructions on the [Balena documentation](https://www.balena.io/docs/).
 
 ## Configuration  
-Environmental variables can be modified in Balena Cloud or in the Docker environment:
+**It is crucial to correctly set the environmental variables to ensure the proper functioning of the performance tests:**
+
 - **Ookla Speedtest**:  
   - `ENV ookla_speedtest=false` to enable Ookla Speedtest.  
   - `ENV ookla_server="none"` to specify an Ookla server (optional).  
+
 - **iPerf3 Speedtest**:  
   - `ENV iperf3_speedtest=false` to enable iPerf3 Speedtest.  
   - `ENV iperf3_server="169.150.238.161"` to set the iPerf3 server.  
 
-You can change the server IP or enable/disable specific speed tests by modifying these variables.  
+You can change the server IP or enable/disable specific speed tests by modifying these variables. **Failure to set these variables correctly may result in the tests not running as expected.**
 
 ## Usage  
 1. The service is scheduled to run at **25 minutes past the hour** to maximize pod efficiency.  

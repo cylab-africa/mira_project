@@ -3,7 +3,7 @@
 export PATH=/usr/local/bin:/usr/bin:$PATH
 
 # Extract the current hour and AM/PM
-current_datetime=$(date +"%I%p") # Hour in 12-hour format with AM/PM
+current_datetime=$(date +"%Y-%m-%d_%I%p") # Hour in 12-hour format with AM/PM
 
 # Specify the output files
 report_csv="/reports/lighthouse_report.csv"
