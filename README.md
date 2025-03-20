@@ -19,12 +19,14 @@ The following services are included in the Upanzi Pod:
 
 ## Service Runtime Schedule
 
-To maximize efficiency, services are scheduled to run at specific times each hour(This timing can be modified as needed.):
+To maximize efficiency, services are scheduled to run at specific times each hour (This timing can be modified as needed.):
 
 - **@00 Minutes**: Africa Routes Service.
 - **@15 Minutes**: Web Performance Service.
 - **@25 Minutes**: Speedtest Service. 
 - **@40 Minutes**: Mesh Routes Service.
+
+**Note**: All times are in UTC. Ensure to coordinate accordingly to your local time.
 
 ---
 
@@ -42,7 +44,10 @@ You can customize the configuration for speed tests through the following enviro
 ```plaintext
 ENV IP_LIST="airtelPi,197.157.186.122;mtnPi,41.186.78.1;liquidPi,41.216.98.178;"
 ```
+<<<<<<< HEAD
+=======
 
+>>>>>>> origin/main
 
 ---
 
@@ -77,6 +82,8 @@ services:
 
   mesh_routes:
     build: ./upz_mesh_routes
+    environment:
+      - IP_LIST=airtelPi,197.157.186.122;mtnPi,41.186.78.1;liquidPi,41.216.98.178;
 
   africa_routes:
     build: ./upz_packets_routes_africa
@@ -116,5 +123,8 @@ Feel free to fork this repository, report issues, or submit pull requests. For s
 
 ## License
 
+<<<<<<< HEAD
+=======
 
+>>>>>>> origin/main
 This project is licensed under the Mozilla Public License 2.0 (MPL-2.0). See the [`LICENSE`](https://www.mozilla.org/en-US/MPL/2.0/) file for more details.
