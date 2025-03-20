@@ -36,6 +36,13 @@ You can customize the configuration for speed tests through the following enviro
 - `ENV iperf3_speedtest=false` to enable/disable iPerf3 Speedtest.
 - `ENV iperf3_server="<IP_ADDRESS>"` to set the iPerf server.
 - `ENV ookla_server="<IP_ADDRESS>"` to specify the Ookla server.
+- `ENV IP_LIST="deviceName1,IP_Address1;deviceName2,IP_Address2;deviceName3,IP_Address3;"` to specify the list of IP addresses for the Mesh Routes Service.
+
+**Example**:
+```plaintext
+ENV IP_LIST="airtelPi,197.157.186.122;mtnPi,41.186.78.1;liquidPi,41.216.98.178;"
+```
+
 
 ---
 
@@ -111,5 +118,3 @@ Feel free to fork this repository, report issues, or submit pull requests. For s
 
 
 This project is licensed under the Mozilla Public License 2.0 (MPL-2.0). See the [`LICENSE`](https://www.mozilla.org/en-US/MPL/2.0/) file for more details.
-
-

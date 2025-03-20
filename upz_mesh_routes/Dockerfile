@@ -2,6 +2,8 @@
 FROM ubuntu:20.04
 
 # Set environment variable to avoid interactive prompts
+# Replace with actual IP addresses
+ENV IP_LIST="" 
 ENV DEBIAN_FRONTEND=noninteractive
 
 # Install necessary packages
@@ -9,6 +11,7 @@ RUN apt update && apt install -y \
     mtr \
     cron \
     geoip-bin \
+    geoip-database \
     vnstat \
     --no-install-recommends \
     && apt clean \
@@ -19,7 +22,6 @@ RUN mkdir -p /reports /scripts
 
 # Copy test scripts and data
 COPY mtr_measurements.sh /scripts/mtr_measurements.sh
-COPY IPs_data /scripts/IPs_data
 COPY monitor_network_usage.sh /scripts/monitor_network_usage.sh
 
 # Set executable permissions

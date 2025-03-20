@@ -2,7 +2,7 @@
 FROM ubuntu:20.04
 
 # Set environment variable 
-ENV COUNTRY="Rwanda" 
+ENV COUNTRY="" 
 ENV ookla_speedtest=true
 ENV iperf3_speedtest=true
 ENV iperf3_server="169.150.238.161"

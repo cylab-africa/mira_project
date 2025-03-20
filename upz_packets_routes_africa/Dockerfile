@@ -9,6 +9,7 @@ RUN apt update && apt install -y \
     mtr \
     cron \
     geoip-bin \
+    geoip-database \
     vnstat \
     --no-install-recommends \
     && apt clean \

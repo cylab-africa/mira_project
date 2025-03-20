@@ -1,22 +1,26 @@
 #!/bin/bash
 
-
 # Check if Ookla Speedtest or iPerf3 Speedtest should run
 if [ "$ookla_speedtest" = "true" ] || [ "$iperf3_speedtest" = "true" ]; then
+    current_datetime=$(date +"%Y-%m-%d_%I-%M%p") # Custom format: Year-Month-Day Hour
+
     if [ "$ookla_speedtest" = "true" ]; then
         echo "Running Ookla Speedtest..."
-        if [ "$ookla_server" = "none" ]; then
+        SPEEDTEST_OUTPUT="/reports/speedtest_result_$current_datetime.json"
+
+        if [ "$ookla_server" = "none" ] || [ "$ookla_server" = "" ]; then
             # Run speedtest without the server argument
-            speedtest --accept-license --accept-gdpr --format=json > "/reports/speedtest_result_$(date +"%Y-%m-%d_%I-%M%p").json"
+            speedtest --accept-license --accept-gdpr --format=json > "$SPEEDTEST_OUTPUT"
         else
             # Run speedtest with the server argument SERVER ID
-            speedtest -s $ookla_server --accept-license --accept-gdpr --format=json > "/reports/speedtest_result_$(date +"%Y-%m-%d_%I-%M%p").json"
+            speedtest -s $ookla_server --accept-license --accept-gdpr --format=json > "$SPEEDTEST_OUTPUT"
         fi
+
+        echo "Ookla Speedtest completed. Results saved to $SPEEDTEST_OUTPUT."
     fi
 
     if [ "$iperf3_speedtest" = "true" ]; then
         echo "Running iPerf3 Speedtest..."
-        current_datetime=$(date +"%Y-%m-%d_%I-%M%p") # Custom format: Year-Month-Day Hour
         IPERF3_OUTPUT="/reports/iperf3_result_$current_datetime.txt"
 
         # Run iperf3 test TCP
