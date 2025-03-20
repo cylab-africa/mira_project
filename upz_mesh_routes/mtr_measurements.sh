@@ -3,25 +3,33 @@
 export PATH=/usr/local/bin:/usr/bin:$PATH
 
 current_datetime=$(date +"%Y-%m-%d_%I-%M%p") # Custom format: Year-Month-Day Hour
-IPs_data="/scripts/IPs_data" # Specify the input file for the IPs
 
-# Specify the output files
+# Specify the output file
 MTR_OUTPUT="/reports/mtr_result_$current_datetime.txt"
 
+# Check if IP_LIST is set and not empty
+if [ -z "$IP_LIST" ]; then
+    echo "IP addresses are not set. Please set the IP_LIST environment variable for the test to run. For more information, read the documentation." >> $MTR_OUTPUT
+    exit 1
+fi
 
-# Run mtr test.
-# Loop through each line in the input file to get the URL and the IP for the mtr
-while IFS=, read -r url ip || [[ -n "$url" ]]; do
+# Read IP addresses from the environment variable
+IFS=';' read -ra IP_ARRAY <<< "$IP_LIST"
 
-    ip_country=$(geoiplookup $ip | awk -F: '{print $2}') #Conferming the ip's country location using geoiplookup.
-    echo "Running mtr for IP:$ip site:$url country:$ip_country. date:$current_datetime">>$MTR_OUTPUT
+# Run mtr test for each IP address
+for entry in "${IP_ARRAY[@]}"; do
+    IFS=',' read -ra ADDR <<< "$entry"
+    device_name=${ADDR[0]}
+    ip=${ADDR[1]}
+    
+    ip_country=$(geoiplookup $ip | awk -F: '{print $2}') # Confirming the IP's country location using geoiplookup.
+    echo "Running mtr for device:$device_name IP:$ip country:$ip_country. date:$current_datetime" >> $MTR_OUTPUT
     if MTR_RESULTS=$(mtr --report --report-cycles=3 $ip); then
         # If mtr succeeds, append the results to the output file
-        echo "$MTR_RESULTS">>$MTR_OUTPUT
+        echo "$MTR_RESULTS" >> $MTR_OUTPUT
     else
         # If mtr fails, log the failure and skip to the next IP
-        echo "mtr command failed for IP: $ip">>$MTR_OUTPUT
+        echo "mtr command failed for device:$device_name IP: $ip" >> $MTR_OUTPUT
         continue
     fi
-
-done < "$IPs_data"
+done

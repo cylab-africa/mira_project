@@ -27,7 +27,7 @@ This container performs performance tests using `ookla speedtest` and `iperf3`.
 
 - **iPerf3 Speedtest**:  
   - `ENV iperf3_speedtest=false` to enable iPerf3 Speedtest.  
-  - `ENV iperf3_server="169.150.238.161"` to set the iPerf3 server.  
+  - `ENV iperf3_server="169.150.238.161"` to set the iPerf3 server.  More Servers `https://github.com/R0GGER/public-iperf3-servers`
 
 You can change the server IP or enable/disable specific speed tests by modifying these variables. **Failure to set these variables correctly may result in the tests not running as expected.**
 
