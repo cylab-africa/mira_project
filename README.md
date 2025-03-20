@@ -44,6 +44,10 @@ You can customize the configuration for speed tests through the following enviro
 ```plaintext
 ENV IP_LIST="airtelPi,197.157.186.122;mtnPi,41.186.78.1;liquidPi,41.216.98.178;"
 ```
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/main
 
 ---
 
@@ -119,4 +123,8 @@ Feel free to fork this repository, report issues, or submit pull requests. For s
 
 ## License
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/main
 This project is licensed under the Mozilla Public License 2.0 (MPL-2.0). See the [`LICENSE`](https://www.mozilla.org/en-US/MPL/2.0/) file for more details.
