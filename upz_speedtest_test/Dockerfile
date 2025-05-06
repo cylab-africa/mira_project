@@ -3,8 +3,8 @@ FROM ubuntu:20.04
 
 # Set environment variable 
 ENV COUNTRY="" 
-ENV ookla_speedtest=true
-ENV iperf3_speedtest=true
+ENV ookla_speedtest="true"
+ENV iperf3_speedtest="true"
 ENV iperf3_server="169.150.238.161"
 ENV ookla_server=7310
 ENV DEBIAN_FRONTEND=noninteractive
@@ -38,9 +38,13 @@ COPY monitor_network_usage.sh /scripts/monitor_network_usage.sh
 
 RUN chmod +x /scripts/speedtest_test.sh /scripts/monitor_network_usage.sh
 
+# Export environment variables to a file so cron jobs can access them
+RUN printenv | grep -E 'ookla_speedtest|iperf3_speedtest|iperf3_server|ookla_server' >> /etc/environment
+
+
 # Set up cron jobs dynamically
-RUN (crontab -l 2>/dev/null; echo "25 * * * * /scripts/speedtest_test.sh >> /var/log/cron.log 2>&1") | crontab - \
-    && (crontab -l 2>/dev/null; echo "55 23 * * * /scripts/monitor_network_usage.sh >> /var/log/cron.log 2>&1") | crontab -
+RUN (crontab -l 2>/dev/null; echo "25 * * * * /bin/bash -c 'source /etc/environment && /scripts/speedtest_test.sh' >> /var/log/cron.log 2>&1") | crontab -\
+    && (crontab -l 2>/dev/null; echo "55 23 * * * source /etc/environment && /scripts/monitor_network_usage.sh >> /var/log/cron.log 2>&1") | crontab -
 
 # Create the cron log file and start vnstatd
 RUN touch /var/log/cron.log \

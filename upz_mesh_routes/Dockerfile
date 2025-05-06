@@ -27,8 +27,11 @@ COPY monitor_network_usage.sh /scripts/monitor_network_usage.sh
 # Set executable permissions
 RUN chmod +x /scripts/mtr_measurements.sh /scripts/monitor_network_usage.sh
 
+# Export environment variables so cron jobs can access them
+RUN printenv | grep -E 'IP_LIST' >> /etc/environment
+
 # Set up cron jobs dynamically
-RUN (crontab -l 2>/dev/null; echo "40 * * * * /scripts/mtr_measurements.sh >> /var/log/cron.log 2>&1") | crontab - \
+RUN (crontab -l 2>/dev/null; echo "40 * * * * bash -c 'source /etc/environment && /scripts/mtr_measurements.sh' >> /var/log/cron.log 2>&1'") | crontab - \
     && (crontab -l 2>/dev/null; echo "55 23 * * * /scripts/monitor_network_usage.sh >> /var/log/cron.log 2>&1") | crontab -
 
 # Create log file and start vnstatd

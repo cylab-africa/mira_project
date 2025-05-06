@@ -1,7 +1,9 @@
 #!/bin/bash
 
+
 # Check if Ookla Speedtest or iPerf3 Speedtest should run
 if [ "$ookla_speedtest" = "true" ] || [ "$iperf3_speedtest" = "true" ]; then
+
     current_datetime=$(date +"%Y-%m-%d_%I-%M%p") # Custom format: Year-Month-Day Hour
 
     if [ "$ookla_speedtest" = "true" ]; then
