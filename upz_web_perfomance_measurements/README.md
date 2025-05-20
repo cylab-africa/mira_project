@@ -29,6 +29,12 @@ The script `web_perfomance_measuerement.sh` runs periodically as a cron job and 
 3. Saves the Lighthouse report in JSON format in the `/reports` directory.
 4. Extracts key performance metrics and appends them to the `lighthouse_report.csv` file.
 
+### DNS Lookup Measurement
+The script `dns_lookup.js` runs periodically as a cron job and performs the following actions:
+1. Reads the list of websites from the `websites` file.
+2. Performs DNS lookups for each website.
+3. Logs the DNS lookup results, including resolution time and IP addresses, to the `/reports/dns_lookup.log` file
+
 ### Network Usage Monitoring
 The script `monitor_network_usage.sh` runs periodically as a cron job and performs the following actions:
 1. Checks if vnStat is installed and initializes the database for the specified network interface.
