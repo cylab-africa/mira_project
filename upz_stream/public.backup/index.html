@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>DASH QoE Test</title>
+  <script src="./lib/dash.all.min.js"></script>
+</head>
+<body>
+  <video id="videoPlayer" controls autoplay width="640" height="360"></video>
+
+  <pre id="metrics" style="margin-top: 20px; background: #f8f8f8; padding: 10px; font-size: 12px;"></pre>
+
+  <script>
+    const url = "https://dash.akamaized.net/envivio/EnvivioDash3/manifest.mpd";
+    const player = dashjs.MediaPlayer().create();
+    const video = document.querySelector("#videoPlayer");
+
+    window.qoeMetrics = {
+      startupDelay: null,
+      bufferingCount: 0,
+      bufferingTime: 0,
+      stallEvents: [],       // durations of individual stalls
+      bitrateChanges: [],
+      playbackStart: null,
+      playbackEnd: null
+    };
+
+    let startupTimeStart = performance.now();
+    console.log("[INIT] Starting DASH player");
+
+    player.initialize(video, url, false);
+
+    player.on(dashjs.MediaPlayer.events.STREAM_INITIALIZED, () => {
+      console.log("[EVENT] STREAM_INITIALIZED");
+      video.play().then(() => {
+        console.log("[EVENT] video.play() succeeded");
+      }).catch(e => {
+        console.error("[EVENT] video.play() failed", e);
+      });
+    });
+
+    player.on(dashjs.MediaPlayer.events.PLAYBACK_STARTED, () => {
+      const now = performance.now();
+      window.qoeMetrics.startupDelay = (now - startupTimeStart) / 1000;
+      window.qoeMetrics.playbackStart = performance.now();
+      console.log("[EVENT] PLAYBACK_STARTED — Startup Delay:", window.qoeMetrics.startupDelay);
+    });
+
+    player.on(dashjs.MediaPlayer.events.BUFFER_EMPTY, () => {
+      window.qoeMetrics.bufferingStart = performance.now();
+      window.qoeMetrics.bufferingCount += 1;
+      console.log("[EVENT] BUFFER_EMPTY");
+    });
+
+    player.on(dashjs.MediaPlayer.events.BUFFER_LOADED, () => {
+      if (window.qoeMetrics.bufferingStart) {
+        const duration = (performance.now() - window.qoeMetrics.bufferingStart) / 1000;
+        window.qoeMetrics.bufferingTime += duration;
+        window.qoeMetrics.stallEvents.push(duration);
+        delete window.qoeMetrics.bufferingStart;
+        console.log("[EVENT] BUFFER_LOADED");
+      }
+    });
+
+    player.on(dashjs.MediaPlayer.events.QUALITY_CHANGE_RENDERED, (e) => {
+      window.qoeMetrics.bitrateChanges.push({
+        time: performance.now() / 1000,
+        qualityIndex: e.newQuality
+      });
+      console.log("[EVENT] QUALITY_CHANGE_RENDERED to", e.newQuality);
+    });
+
+    // Mark end for playback duration measurement
+    player.on(dashjs.MediaPlayer.events.PLAYBACK_ENDED, () => {
+      window.qoeMetrics.playbackEnd = performance.now();
+      console.log("[EVENT] PLAYBACK_ENDED");
+    });
+    setInterval(() => {
+  const pre = document.getElementById("metrics");
+  if (pre && window.qoeMetrics) {
+    const video = document.querySelector('video');
+    const quality = video.getVideoPlaybackQuality?.() || {};
+    const droppedFrames = quality.droppedVideoFrames || video.webkitDroppedFrameCount || 0;
+    const totalFrames = quality.totalVideoFrames || 0;
+    const playbackStart = window.qoeMetrics.playbackStart ?? performance.now();
+    const playbackEnd = performance.now();
+    const playbackDuration = (playbackEnd - playbackStart) / 1000;
+    const bufferingRatio = window.qoeMetrics.bufferingTime / playbackDuration;
+
+    const liveMetrics = {
+      ...window.qoeMetrics,
+      droppedFrames,
+      totalFrames,
+      playbackDuration,
+      bufferingRatio
+    };
+    pre.textContent = JSON.stringify(liveMetrics, null, 2);
+  }
+}, 1000);
+
+  </script>
+  
+</body>
+</html>
