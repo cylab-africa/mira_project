@@ -24,6 +24,11 @@ services:
     volumes:
       - 'spd_data:/reports' # Iperf Data
     restart: always
+  upz_stream:
+    build: ./upz_stream
+    volumes:
+      - 'str_data:/app/reports' # Iperf Data
+    restart: always
 
 
 volumes:
@@ -31,3 +36,4 @@ volumes:
   mr_data:
   wm_data:
   spd_data:
+  str_data:
