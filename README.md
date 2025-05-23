@@ -4,6 +4,15 @@ The Upanzi Pod Measurements project is designed to perform a variety of network 
 
 ---
 
+> **🚨 Recommended:** For production use, please switch to the `stable` branch to ensure you're using the latest tested and verified version of the Upanzi Pod Measurements project.
+>
+> ```bash
+> git checkout stable
+> ```
+>
+> The `main` branch may contain features that are under development or experimental.
+
+
 ## Features
 
 ### Services
@@ -14,6 +23,8 @@ The following services are included in the Upanzi Pod:
 - **Mesh Routes Service**: Traces routes between devices in the pod.
 - **Web Performance Service**: Analyzes the performance of specified websites.
 - **Network Usage Monitoring**: Tracks the network usage of all containers on the device. (Now included within each service)
+- **Streaming QoE Service**: Measures video playback quality using dash.js and Puppeteer, capturing startup delay, buffering events, stall durations, bitrate switches, and dropped frames.
+
 
 ---
 
@@ -24,6 +35,7 @@ To maximize efficiency, services are scheduled to run at specific times each hou
 - **@00 Minutes**: Africa Routes Service.
 - **@15 Minutes**: Web Performance Service.
 - **@25 Minutes**: Speedtest Service. 
+- **@35 Minutes**: Streaming QoE Service.
 - **@40 Minutes**: Mesh Routes Service.
 
 **Note**: All times are in UTC. Ensure to coordinate accordingly to your local time.
@@ -112,6 +124,8 @@ Each service has a detailed README file for further instructions. Click on the l
 - [Mesh Routes Service](./upz_mesh_routes/README.md)
 - [Africa Routes Service](./upz_packets_routes_Africa/README.md)
 - [Web Performance Service](./upz_web_perfomance_measurements/README.md)
+- [Streaming QoE Service](./upz_stream/README.md)
+
 
 ---
 
