@@ -51,6 +51,20 @@ Each file is named to indicate the source container or service. Below is an over
 
 ---
 
+### 📌 `stream.csv`
+- **Service**: Streaming QoE
+- **Description**:  Logs Quality of Experience (QoE) metrics from DASH video playback, including startup delay, buffering, stall duration, bitrate changes, and rendering stats.
+- **Use**:  Assessing streaming responsiveness, stability, and playback smoothness under different network conditions.
+
+---
+
+### 📌 `dns_lookup_time.csv`
+- **Service**: DNS Lookup
+- **Description**:  Logs DNS resolution times for each website, indicating how long it takes to resolve domain names.
+- **Use**:   Measuring DNS responsiveness and comparing lookup delays across websites.
+
+---
+
 ### 📌 `network_usage.log`
 - **Service**: Network Usage Monitoring
 - **Description**: Logs of overall network usage on each containers.
