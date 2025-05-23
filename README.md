@@ -56,12 +56,6 @@ You can customize the configuration for speed tests through the following enviro
 ```plaintext
 ENV IP_LIST="airtelPi,197.157.186.122;mtnPi,41.186.78.1;liquidPi,41.216.98.178;"
 ```
-<<<<<<< HEAD
-=======
-
->>>>>>> origin/main
-
----
 
 ## Usage Instructions
 
