@@ -129,6 +129,18 @@ Each service has a detailed README file for further instructions. Click on the l
 
 ---
 
+## 📁 Data Samples
+
+To better understand the format and structure of the data collected by each service, explore the [`upz_data_sample`](./upz_data_sample/) folder.
+
+This directory contains:
+- Example output files from different services (QoE, network, speed tests, etc.)
+- Sample logs and CSVs for review
+- A dedicated [`README`](./upz_data_sample/README.md) file that explains each file's content and structure
+
+> 📌 These samples can help you structure your own analysis pipelines or verify that the services are logging data correctly.
+
+
 ## Contribution
 
 Feel free to fork this repository, report issues, or submit pull requests. For significant changes, please open an issue first to discuss your ideas.
