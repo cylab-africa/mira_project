@@ -149,8 +149,4 @@ Feel free to fork this repository, report issues, or submit pull requests. For s
 
 ## License
 
-<<<<<<< HEAD
-=======
-
->>>>>>> origin/main
 This project is licensed under the Mozilla Public License 2.0 (MPL-2.0). See the [`LICENSE`](https://www.mozilla.org/en-US/MPL/2.0/) file for more details.
