@@ -4,7 +4,7 @@
 INTERFACE="eth0"
 
 # Log file location
-LOG_FILE="/app/reports/network_usage.log"
+LOG_FILE="/upz_probe/reports/network_usage.log"
 
 # Check if vnStat is installed
 if ! command -v vnstat &> /dev/null; then

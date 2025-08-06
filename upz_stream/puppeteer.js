@@ -18,7 +18,7 @@ const path = require('path');
   page.on('console', msg => console.log(`[BROWSER] ${msg.text()}`));
   page.on('pageerror', err => console.error('[BROWSER ERROR]', err));
 
-  await page.goto('file:///app/public/index.html', { waitUntil: 'load' });
+  await page.goto('file:///upz_probe/public/index.html', { waitUntil: 'load' });
 
   console.log("[INFO] Waiting 30 seconds for video playback and QoE metrics...");
   await new Promise(resolve => setTimeout(resolve, 30000));
@@ -45,9 +45,9 @@ const path = require('path');
   });
 
   if (qoe) {
-    console.log('📊 QoE Metrics:', qoe);
+    console.log('QoE Metrics:', qoe);
 
-    const csvPath = '/app/reports/stream.csv';
+    const csvPath = '/upz_probe/reports/stream.csv';
     const timestamp = new Date().toISOString();
     const row = [
       timestamp,
@@ -69,7 +69,7 @@ const path = require('path');
 
     fs.appendFileSync(csvPath, row + '\n');
   } else {
-    console.log('⚠️ QoE Metrics: Not available');
+    console.log('QoE Metrics: Not available');
   }
 
   await browser.close();
