@@ -45,7 +45,7 @@ RUN printenv | grep -E 'ookla_speedtest|iperf3_speedtest|iperf3_server|ookla_ser
 
 # Set up cron jobs dynamically
 RUN (crontab -l 2>/dev/null; echo "25 * * * * /bin/bash -c 'source /etc/environment && /upz_probe/scripts/speedtest_test.sh' >> /var/log/cron.log 2>&1") | crontab -\
-    && (crontab -l 2>/dev/null; echo "55 23 * * * source /etc/environment && /upz_probe/scripts/monitor_network_usage.sh >> /var/log/cron.log 2>&1") | crontab -
+    && (crontab -l 2>/dev/null; echo "55 23 * * *  /upz_probe/scripts/monitor_network_usage.sh >> /var/log/cron.log 2>&1") | crontab -
 
 # Create the cron log file and start vnstatd
 RUN touch /var/log/cron.log \

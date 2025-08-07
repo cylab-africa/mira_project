@@ -50,7 +50,7 @@ You can customize the configuration for speed tests through the following enviro
 - `ENV iperf3_speedtest=false` to enable/disable iPerf3 Speedtest.
 - `ENV iperf3_server="<IP_ADDRESS>"` to set the iPerf server.
 - `ENV ookla_server="<IP_ADDRESS>"` to specify the Ookla server.
-- `ENV IP_LIST="deviceName1,IP_Address1;deviceName2,IP_Address2;deviceName3,IP_Address3;"` to specify the list of IP addresses for the Mesh Routes Service.
+- `ENV IP_LIST="deviceName1,IP_Address1;deviceName2,IP_Address2;deviceName3,IP_Address3;"` to specify the list of IP addresses for the Mesh Routes Service. Remember to include the `""` for the purpose of escaping the `;`.
 
 **Example**:
 ```plaintext

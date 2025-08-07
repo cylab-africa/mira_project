@@ -34,7 +34,7 @@ RUN chmod +x /upz_probe/scripts/mtr_measurements.sh /upz_probe/scripts/monitor_n
 RUN printenv | grep -E 'IP_LIST' >> /etc/environment
 
 # Set up cron jobs dynamically
-RUN (crontab -l 2>/dev/null; echo "40 * * * * bash -c 'source /etc/environment && /upz_probe/scripts/mtr_measurements.sh' >> /var/log/cron.log 2>&1'") | crontab - \
+RUN (crontab -l 2>/dev/null; echo "*40 * * * *  /bin/bash -c '. /etc/environment && /upz_probe/scripts/mtr_measurements.sh' >> /var/log/cron.log 2>&1" ) | crontab - \
     && (crontab -l 2>/dev/null; echo "55 23 * * * /upz_probe/scripts/monitor_network_usage.sh >> /var/log/cron.log 2>&1") | crontab -
 
 # Create log file and start vnstatd
@@ -42,4 +42,4 @@ RUN touch /var/log/cron.log \
     && service vnstat start
 
 # Command to start vnstat and cron in foreground
-CMD ["sh", "-c", "service vnstat start && cron -f"]
+CMD ["sh", "-c", "printenv | grep -E '^IP_LIST=' >> /etc/environment && service vnstat start && cron -f"]
