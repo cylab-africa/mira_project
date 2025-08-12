@@ -14,8 +14,11 @@ RUN apt-get update && apt-get install -y \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* 
 
-# Set the CHROME_PATH environment variable to the path of the Chromium executable
+
+
+    # Set the CHROME_PATH environment variable to the path of the Chromium executable
 ENV CHROME_PATH=/usr/bin/chromium
+
 
 # Install Lighthouse globally
 RUN npm install -g lighthouse

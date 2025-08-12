@@ -26,13 +26,14 @@ function formatUTCTimestampForFilename() {
   const mm = String(now.getUTCMonth() + 1).padStart(2, '0');
   const dd = String(now.getUTCDate()).padStart(2, '0');
   const hh = String(now.getUTCHours()).padStart(2, '0');
-  return `${yyyy}-${mm}-${dd}_${hh}`;
+  const min = String(now.getUTCMinutes()).padStart(2, '0');
+  return `${yyyy}-${mm}-${dd}_${hh}_${min}`;
 }
 
 (async () => {
   const browser = await puppeteer.launch({
     headless: true,
-    executablePath: process.env.CHROME_PATH || undefined,
+    executablePath: '/usr/bin/chromium',
     args: ['--no-sandbox', '--disable-setuid-sandbox'],
   });
 

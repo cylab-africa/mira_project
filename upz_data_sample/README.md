@@ -8,18 +8,11 @@ Each file is named to indicate the source container or service. Below is an over
 
 ---
 
-### 📌 `mtr_result_YYYY-MM-DD_HH-MM(upz_africa_routes).txt`
-- **Service**: Africa Routes
+### 📌 `mtr_result_2025-08-05_15-00.csv`
+- **Service**: Africa Routes, Same with Mesh Routes
 - **Description**: Traceroute results to African websites showing hop-by-hop latency and packet loss.
-- **Example**: `mtr_result_2025-03-20_01-00PM(upz_africa_routes).txt`
+- **Example**: `packet-routes-mtr_result_2025-08-07_09-31.csv`
 - **Use**: Evaluating regional network performance and identifying routing bottlenecks.
-
----
-
-### 📌 `mtr_result_YYYY-MM-DD_HH-MM(upz_mesh_routes).txt`
-- **Service**: Mesh Routes
-- **Description**: Internal traceroute between pod devices.
-- **Use**: Diagnosing intra-pod network paths and latency.
 
 ---
 
@@ -44,9 +37,9 @@ Each file is named to indicate the source container or service. Below is an over
 
 ---
 
-### 📌 `youtube_YYYY-MM-DD_HHPM(upz_web_perfomance_measurements).json`
+### 📌 `wikipedia_2025-08-12_12_06.har`
 - **Service**: Web Performance
-- **Description**: Detailed Lighthouse audit for YouTube or similar.
+- **Description**: Export of an HAR file.
 - **Use**: Inspecting paint times, speed index, and performance bottlenecks.
 
 ---
