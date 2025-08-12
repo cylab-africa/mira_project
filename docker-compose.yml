@@ -6,28 +6,28 @@ services:
     # No ports need to be exposed for the client
     restart: always
     volumes:
-      - 'pr_data:/reports' #packets_routes_data
+      - 'pr_data:/upz_probe/reports' #packets_routes_data
   upz_mesh_routes:
     build: ./upz_mesh_routes
     #network_mode: "host"
     # No ports need to be exposed for the client
     restart: always
     volumes:
-      - 'mr_data:/reports' #mesh_routes_data
+      - 'mr_data:/upz_probe/reports' #mesh_routes_data
   upz_web_perfomance_measurements:
     build: ./upz_web_perfomance_measurements
     restart: always
     volumes:
-      - 'wm_data:/reports' #web_measurement_data
+      - 'wm_data:/upz_probe/reports' #web_measurement_data
   upz_speedtest_test:
     build: ./upz_speedtest_test
     volumes:
-      - 'spd_data:/reports' # Iperf Data
+      - 'spd_data:/upz_probe/reports' # Iperf Data
     restart: always
   upz_stream:
     build: ./upz_stream
     volumes:
-      - 'str_data:/app/reports' # Iperf Data
+      - 'str_data:/upz_probe/reports' # Iperf Data
     restart: always
 
 

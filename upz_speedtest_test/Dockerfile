@@ -26,25 +26,26 @@ RUN curl -s https://packagecloud.io/install/repositories/ookla/speedtest-cli/scr
     apt-get install -y speedtest
 
 
-
+#Setting Working Directory
+WORKDIR /upz_probe 
 
 # Create directories for reports and scripts
-RUN mkdir -p /reports && mkdir -p /scripts
+RUN mkdir -p /upz_probe/reports && mkdir -p /upz_probe/scripts
 
 # Copy the Speedtest test script into the container
 # Copy the monitor network usage script into the container
-COPY speedtest_test.sh /scripts/speedtest_test.sh
-COPY monitor_network_usage.sh /scripts/monitor_network_usage.sh
+COPY speedtest_test.sh /upz_probe/scripts/speedtest_test.sh
+COPY monitor_network_usage.sh /upz_probe/scripts/monitor_network_usage.sh
 
-RUN chmod +x /scripts/speedtest_test.sh /scripts/monitor_network_usage.sh
+RUN chmod +x /upz_probe/scripts/speedtest_test.sh /upz_probe/scripts/monitor_network_usage.sh
 
 # Export environment variables to a file so cron jobs can access them
 RUN printenv | grep -E 'ookla_speedtest|iperf3_speedtest|iperf3_server|ookla_server' >> /etc/environment
 
 
 # Set up cron jobs dynamically
-RUN (crontab -l 2>/dev/null; echo "25 * * * * /bin/bash -c 'source /etc/environment && /scripts/speedtest_test.sh' >> /var/log/cron.log 2>&1") | crontab -\
-    && (crontab -l 2>/dev/null; echo "55 23 * * * source /etc/environment && /scripts/monitor_network_usage.sh >> /var/log/cron.log 2>&1") | crontab -
+RUN (crontab -l 2>/dev/null; echo "25 * * * * /bin/bash -c 'source /etc/environment && /upz_probe/scripts/speedtest_test.sh' >> /var/log/cron.log 2>&1") | crontab -\
+    && (crontab -l 2>/dev/null; echo "55 23 * * *  /upz_probe/scripts/monitor_network_usage.sh >> /var/log/cron.log 2>&1") | crontab -
 
 # Create the cron log file and start vnstatd
 RUN touch /var/log/cron.log \

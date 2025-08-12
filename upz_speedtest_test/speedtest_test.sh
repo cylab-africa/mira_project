@@ -8,7 +8,7 @@ if [ "$ookla_speedtest" = "true" ] || [ "$iperf3_speedtest" = "true" ]; then
 
     if [ "$ookla_speedtest" = "true" ]; then
         echo "Running Ookla Speedtest..."
-        SPEEDTEST_OUTPUT="/reports/speedtest_result_$current_datetime.json"
+        SPEEDTEST_OUTPUT="/upz_probe/reports/speedtest_result_$current_datetime.json"
 
         if [ "$ookla_server" = "none" ] || [ "$ookla_server" = "" ]; then
             # Run speedtest without the server argument
@@ -23,7 +23,7 @@ if [ "$ookla_speedtest" = "true" ] || [ "$iperf3_speedtest" = "true" ]; then
 
     if [ "$iperf3_speedtest" = "true" ]; then
         echo "Running iPerf3 Speedtest..."
-        IPERF3_OUTPUT="/reports/iperf3_result_$current_datetime.txt"
+        IPERF3_OUTPUT="/upz_probe/reports/iperf3_result_$current_datetime.txt"
 
         # Run iperf3 test TCP
         echo "*************************************************************************" >> $IPERF3_OUTPUT

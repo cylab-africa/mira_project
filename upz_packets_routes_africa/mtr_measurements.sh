@@ -2,26 +2,39 @@
 
 export PATH=/usr/local/bin:/usr/bin:$PATH
 
-current_datetime=$(date +"%Y-%m-%d_%I-%M%p") # Custom format: Year-Month-Day Hour
-IPs_data="/scripts/IPs_data" # Specify the input file for the IPs
+# UTC timestamp for filename and standard datetime
+datetime_utc=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+timestamp=$(date -u +"%Y-%m-%d_%H-%M")
 
-# Specify the output files
-MTR_OUTPUT="/reports/mtr_result_$current_datetime.txt"
+# File inputs and outputs
+IPs_data="/upz_probe/scripts/IPs_data"
+CSV_OUTPUT="/upz_probe/reports/mtr_result_${timestamp}.csv"
 
+# CSV Header
+echo "Country,Site,DateTime,IP for the site,Path-Avg_latency" > "$CSV_OUTPUT"
 
-# Run mtr test.
-# Loop through each line in the input file to get the URL and the IP for the mtr
-while IFS=, read -r url ip || [[ -n "$url" ]]; do
+# Read each line of IPs_data (format: site,ip)
+while IFS=, read -r site ip || [[ -n "$site" ]]; do
+    # Get country via geoiplookup
+    ip_country=$(geoiplookup "$ip" | awk -F: '{gsub(/^ /, "", $2); print $2}' | cut -d',' -f1)
 
-    ip_country=$(geoiplookup $ip | awk -F: '{print $2}') #Conferming the ip's country location using geoiplookup.
-    echo "Running mtr for IP:$ip site:$url country:$ip_country. date:$current_datetime">>$MTR_OUTPUT
-    if MTR_RESULTS=$(mtr --report --report-cycles=3 $ip); then
-        # If mtr succeeds, append the results to the output file
-        echo "$MTR_RESULTS">>$MTR_OUTPUT
-    else
-        # If mtr fails, log the failure and skip to the next IP
-        echo "mtr command failed for IP: $ip">>$MTR_OUTPUT
+    echo "Running mtr for $site ($ip) — $ip_country @ $datetime_utc"
+
+    # Run mtr in JSON mode with 5 probes
+    mtr_json=$(mtr --json -c 5 "$ip" 2>/dev/null)
+
+    if [ $? -ne 0 ] || [ -z "$mtr_json" ]; then
+        echo "mtr failed for $site ($ip), skipping..." >&2
         continue
     fi
 
+    # Escape double quotes for safe CSV embedding
+    escaped_json=$(echo "$mtr_json" | sed 's/"/""/g')
+
+    # Write row to CSV
+    printf "%s,%s,%s,%s,\"%s\"\n" \
+        "$ip_country" "$site" "$datetime_utc" "$ip" "$escaped_json" >> "$CSV_OUTPUT"
+
 done < "$IPs_data"
+
+echo "All probes complete — CSV saved to $CSV_OUTPUT"
