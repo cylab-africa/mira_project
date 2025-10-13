@@ -4,7 +4,7 @@ The Upanzi Pod Measurements project is designed to perform a variety of network 
 
 ---
 
-> **🚨 Recommended:** For production use, please switch to the `stable` branch to ensure you're using the latest tested and verified version of the Upanzi Pod Measurements project.
+> ** Recommended:** For production use, please switch to the `stable` branch to ensure you're using the latest tested and verified version of the Upanzi Pod Measurements project.
 >
 > ```bash
 > git checkout stable
@@ -12,6 +12,23 @@ The Upanzi Pod Measurements project is designed to perform a variety of network 
 >
 > The `main` branch may contain features that are under development or experimental.
 
+## Recommended Balena Image and Hardware
+
+For best performance and compatibility, we recommend the following setup:
+
+- **Balena Image Version:** `balenaOS 5.0.1`
+- **Recommended Modem:** **D-Link 4G LTE USB Adapter**
+
+The D-Link modem has been tested extensively as part of the *Upanzi Probe Connectivity Evaluation* and demonstrated:
+
+- Stable 4G LTE connectivity  
+- True GSM behavior with clean route visibility  
+- Plug-and-play support with Raspberry Pi devices  
+- Minimal packet-level interference  
+
+For more details, refer to the **[Modem Recommendation Report](./docs/modem_recommendation/README.md)**, which outlines the modem testing process and evaluation results.
+
+---
 
 ## Features
 
